@@ -5,14 +5,15 @@ function validar (cadena){
     const c2 = "]";
     const l1 = "{";
     const l2 = "}";
-    
+   
+
     let validacion = [];
 
     for(let caracter of cadena){
         if (caracter === p1 || caracter === c1 || caracter === l1) {
             validacion.push(caracter);
         }else if (caracter === p2 || caracter === c2 || caracter === l2) {
-            if (pila.length === 0) {
+            if (validacion.length === 0) {
                 return false;
         }
 
