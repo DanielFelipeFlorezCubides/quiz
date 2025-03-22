@@ -30,7 +30,7 @@ function validar (cadena){
 
 }
 
-let cadena = propmt("Escribe algo: ");
+let cadena = prompt("Escribe algo: ");
 
 if(validar(cadena)){
     alert("La expresion es equilibrada");
