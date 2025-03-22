@@ -5,47 +5,34 @@ function validar (cadena){
     const c2 = "]";
     const l1 = "{";
     const l2 = "}";
-    let validacion;
+    
+    let validacion = [];
 
-    for(validacion in cadena){
-        if (cadena.includes(p1) && cadena.includes(p2)){
-            if(cadena.includes(c1) && cadena.includes(c2)){
-                if(cadena.includes(l1) && cadena.includes(l2)){
-                    validacion = true;
-                }
+    for(let caracter of cadena){
+        if (caracter === p1 || caracter === c1 || caracter === l1) {
+            validacion.push(caracter);
+        }else if (caracter === p2 || caracter === c2 || caracter === l2) {
+            if (pila.length === 0) {
+                return false;
+        }
+
+        let ultimo = validacion.pop();
+
+        if ((caracter === p2 && ultimo !== p1) ||
+            (caracter === c2 && ultimo !== c1) ||
+            (caracter === l2 && ultimo !== l1)) {
+            return false;
             }
-        }if (cadena.includes(p1) && cadena.includes(p2)){
-            if(cadena.includes(c1) || cadena.includes(c2)){
-                if(cadena.includes(l1) && cadena.includes(l2)){
-                    validacion = false;
-                }
-            }
-        }if (cadena.includes(p1) && cadena.includes(p2)){
-            if(cadena.includes(c1) && cadena.includes(c2)){
-                if(cadena.includes(l1) || cadena.includes(l2)){
-                    validacion = false;
-                }
-            }
-        }if (cadena.includes(p1) || cadena.includes(p2)){
-            if(cadena.includes(c1) && cadena.includes(c2)){
-                if(cadena.includes(l1) && cadena.includes(l2)){
-                    validacion = false;
-                }
-            }
-        }else if (cadena.includes(p1) || cadena.includes(p2) || cadena.includes(c1) || cadena.includes(c2) || cadena.includes(l1) || cadena.includes(l2)){
-            validacion = false;
-        }else{
-            validacion = true;
         }
     }
 
-    return validacion;
+    return validacion.length === 0;
+
 }
 
+let cadena = propmt("Escribe algo: ");
 
-let cadena = prompt("Escribe algo: ");
-
-if(validar(cadena) === true){
+if(validar(cadena)){
     alert("La expresion es equilibrada");
 }else{
     alert("La expresion no es equilibrada");
